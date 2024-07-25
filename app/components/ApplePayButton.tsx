@@ -34,6 +34,9 @@ const ApplePayButton = () => {
             },
         };
 
+        console.log('Payment request:', paymentRequest);
+        console.log('Starting apple pay session');
+
         const session = new ApplePaySession(3, paymentRequest);
 
         session.onvalidatemerchant = (event) => {
