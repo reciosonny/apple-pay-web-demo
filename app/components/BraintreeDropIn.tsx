@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useEffect } from "react";
+// @ts-ignore
 import dropin from "braintree-web-drop-in";
 
 const BraintreeDropIn = () => {
