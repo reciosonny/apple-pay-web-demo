@@ -51,12 +51,9 @@ const ApplePayButton = () => {
         session.begin();
     };
 
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
-
     return (
-        <div>
+        <div style={{ marginTop: '40px' }}>
+            <h2>Apple Pay Button goes here</h2>
             {canMakePayments ? (
                 <apple-pay-button
                     buttonstyle="black"

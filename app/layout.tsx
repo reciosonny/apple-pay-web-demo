@@ -17,10 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* <Script
+      <Script
         src="https://applepay.cdn-apple.com/jsapi/v1/apple-pay-sdk.js"
         strategy="afterInteractive"
-      /> */}
+      />
       <Script
         src="https://js.braintreegateway.com/web/3.103.0/js/client.min.js"
         strategy="afterInteractive"

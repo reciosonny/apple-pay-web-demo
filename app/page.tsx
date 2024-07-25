@@ -31,9 +31,8 @@ export default function Home() {
             </div>
 
             <div>
-                <h2>Apple pay button</h2>
                 <BraintreeDropIn />
-                {/* <ApplePayButton /> */}
+                <ApplePayButton />
             </div>
 
         </main>
