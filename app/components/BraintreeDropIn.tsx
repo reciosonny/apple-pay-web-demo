@@ -29,17 +29,7 @@ const BraintreeDropIn = () => {
     return (
         <div>
             <h2>Braintree drop-in goes here</h2>
-            <div id="dropin-container"></div>
-            <button
-                id="submit-button"
-                style={{
-                    border: "1px solid #fff",
-                    borderRadius: "20px",
-                    padding: "10px",
-                }}
-            >
-                Request payment method
-            </button>
+            <div id="dropin-container" style={{ width: '400px' }}></div>
         </div>
     );
 };
