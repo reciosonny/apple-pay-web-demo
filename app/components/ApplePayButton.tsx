@@ -23,6 +23,8 @@ const ApplePayButton = () => {
     }, []);
 
     const handleApplePayButtonClick = () => {
+
+        console.log('Apple Pay button clicked');
         const paymentRequest = {
             countryCode: 'US',
             currencyCode: 'USD',
@@ -59,6 +61,7 @@ const ApplePayButton = () => {
             <h2>Apple Pay Button goes here</h2>
             {canMakePayments ? (
                 <apple-pay-button
+                    id="apple-pay-button"
                     buttonstyle="black"
                     type="buy"
                     locale="en"
