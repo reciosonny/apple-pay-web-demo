@@ -76,7 +76,7 @@ const ApplePayButton = () => {
 
                     <h3 style={{ marginTop: "20px" }}>Button with text</h3>
                     <div class="apple-pay-button-with-text apple-pay-button-white-with-text" onClick={() => alert('testing apple pay button')}>
-                        <span class="text">Buy with</span>
+                        <span class="text">Custom buy with</span>
                         <span class="logo"></span>
                     </div>
                 </div>
