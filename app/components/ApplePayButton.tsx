@@ -1,6 +1,6 @@
 // @ts-nocheck
-'use client';
-import React, { useEffect, useState } from 'react';
+"use client";
+import React, { useEffect, useState } from "react";
 
 const ApplePayButton = () => {
     const [canMakePayments, setCanMakePayments] = useState(false);
@@ -8,14 +8,16 @@ const ApplePayButton = () => {
 
     useEffect(() => {
         const initializeApplePay = () => {
-            if (typeof window !== 'undefined' && window.ApplePaySession) {
+            if (typeof window !== "undefined" && window.ApplePaySession) {
                 const canMakePayments = ApplePaySession.canMakePayments();
                 setCanMakePayments(canMakePayments);
                 if (!canMakePayments) {
-                    setError('Apple Pay is supported but not set up on this device');
+                    setError(
+                        "Apple Pay is supported but not set up on this device"
+                    );
                 }
             } else {
-                setError('Apple Pay is not supported in this browser');
+                setError("Apple Pay is not supported in this browser");
             }
         };
 
@@ -23,32 +25,31 @@ const ApplePayButton = () => {
     }, []);
 
     const handleApplePayButtonClick = () => {
-
-        console.log('Apple Pay button clicked');
+        console.log("Apple Pay button clicked");
         const paymentRequest = {
-            countryCode: 'US',
-            currencyCode: 'USD',
-            supportedNetworks: ['visa', 'masterCard', 'amex'],
-            merchantCapabilities: ['supports3DS'],
+            countryCode: "US",
+            currencyCode: "USD",
+            supportedNetworks: ["visa", "masterCard", "amex"],
+            merchantCapabilities: ["supports3DS"],
             total: {
-                label: 'Your Total',
-                amount: '10.00',
+                label: "Your Total",
+                amount: "10.00",
             },
         };
 
-        console.log('Payment request:', paymentRequest);
-        console.log('Starting apple pay session');
+        console.log("Payment request:", paymentRequest);
+        console.log("Starting apple pay session");
 
         const session = new ApplePaySession(3, paymentRequest);
 
         session.onvalidatemerchant = (event) => {
-            console.log('Merchant validation would happen here');
+            console.log("Merchant validation would happen here");
             // In a real scenario, you'd validate with your server
             session.completeMerchantValidation({});
         };
 
         session.onpaymentauthorized = (event) => {
-            console.log('Payment authorized:', event.payment);
+            console.log("Payment authorized:", event.payment);
             // In a real scenario, you'd process the payment on your server
             session.completePayment(ApplePaySession.STATUS_SUCCESS);
         };
@@ -57,16 +58,28 @@ const ApplePayButton = () => {
     };
 
     return (
-        <div style={{ marginTop: '40px' }}>
+        <div style={{ marginTop: "40px" }}>
             <h2>Apple Pay Button goes here</h2>
             {canMakePayments ? (
-                <apple-pay-button
-                    id="apple-pay-button"
-                    buttonstyle="black"
-                    type="buy"
-                    locale="en"
-                    onClick={handleApplePayButtonClick}
-                ></apple-pay-button>
+                <div>
+                    <h2>{"apple-pay-button"} JS component</h2>
+                    <apple-pay-button
+                        id="apple-pay-button"
+                        buttonstyle="black"
+                        type="buy"
+                        locale="en"
+                        onClick={handleApplePayButtonClick}
+                    ></apple-pay-button>
+
+                    <h2>Simple apple button</h2>
+                    <div class="apple-pay-button apple-pay-button-black"></div>
+
+                    <h2>Button with text</h2>
+                    <div class="apple-pay-button-with-text apple-pay-button-white-with-text">
+                        <span class="text">Buy with</span>
+                        <span class="logo"></span>
+                    </div>
+                </div>
             ) : (
                 <p>Apple Pay is not available.</p>
             )}

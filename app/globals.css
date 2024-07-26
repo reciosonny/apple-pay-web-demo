@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -17,23 +17,117 @@
 } */
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(
+            to bottom,
+            transparent,
+            rgb(var(--background-end-rgb))
+        )
+        rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        text-wrap: balance;
+    }
 }
 
-
 h2 {
-  font-size: 24px;
-  font-weight: 600;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* CSS */
+.apple-pay-button {
+    display: inline-block;
+    -webkit-appearance: -apple-pay-button;
+    -apple-pay-button-type: donate; /* Use any supported button type. */
+}
+.apple-pay-button-black {
+    -apple-pay-button-style: black;
+}
+.apple-pay-button-white {
+    -apple-pay-button-style: white;
+}
+
+.apple-pay-button-white-with-line {
+    -apple-pay-button-style: white-outline;
+}
+
+/* CSS */
+@supports (-webkit-appearance: -apple-pay-button) {
+    .apple-pay-button-with-text {
+        display: inline-block;
+        -webkit-appearance: -apple-pay-button;
+        -apple-pay-button-type: buy;
+    }
+    .apple-pay-button-with-text > * {
+        display: none;
+    }
+    .apple-pay-button-black-with-text {
+        -apple-pay-button-style: black;
+    }
+    .apple-pay-button-white-with-text {
+        -apple-pay-button-style: white;
+    }
+    .apple-pay-button-white-with-line-with-text {
+        -apple-pay-button-style: white-outline;
+    }
+}
+
+@supports not (-webkit-appearance: -apple-pay-button) {
+    .apple-pay-button-with-text {
+        --apple-pay-scale: 1; /* (height / 32) */
+        display: inline-flex;
+        justify-content: center;
+        font-size: 12px;
+        border-radius: 5px;
+        padding: 0px;
+        box-sizing: border-box;
+        min-width: 200px;
+        min-height: 32px;
+        max-height: 64px;
+    }
+    .apple-pay-button-black-with-text {
+        background-color: black;
+        color: white;
+    }
+    .apple-pay-button-white-with-text {
+        background-color: white;
+        color: black;
+    }
+    .apple-pay-button-white-with-line-with-text {
+        background-color: white;
+        color: black;
+        border: 0.5px solid black;
+    }
+    .apple-pay-button-with-text.apple-pay-button-black-with-text > .logo {
+        background-image: -webkit-named-image(apple-pay-logo-white);
+        background-color: black;
+    }
+    .apple-pay-button-with-text.apple-pay-button-white-with-text > .logo {
+        background-image: -webkit-named-image(apple-pay-logo-black);
+        background-color: white;
+    }
+    .apple-pay-button-with-text.apple-pay-button-white-with-line-with-text
+        > .logo {
+        background-image: -webkit-named-image(apple-pay-logo-black);
+        background-color: white;
+    }
+    .apple-pay-button-with-text > .text {
+        font-family: -apple-system;
+        font-size: calc(1em * var(--apple-pay-scale));
+        font-weight: 300;
+        align-self: center;
+        margin-right: calc(2px * var(--apple-pay-scale));
+    }
+    .apple-pay-button-with-text > .logo {
+        width: calc(35px * var(--scale));
+        height: 100%;
+        background-size: 100% 60%;
+        background-repeat: no-repeat;
+        background-position: 0 50%;
+        margin-left: calc(2px * var(--apple-pay-scale));
+        border: none;
+    }
 }
