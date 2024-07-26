@@ -62,7 +62,7 @@ const ApplePayButton = () => {
             <h2>Apple Pay Button goes here</h2>
             {canMakePayments ? (
                 <div>
-                    <h2>{"apple-pay-button"} JS component</h2>
+                    <h3 style={{ marginTop: "20px" }}>{"apple-pay-button"} JS component</h3>
                     <apple-pay-button
                         id="apple-pay-button"
                         buttonstyle="black"
@@ -71,11 +71,11 @@ const ApplePayButton = () => {
                         onClick={handleApplePayButtonClick}
                     ></apple-pay-button>
 
-                    <h2>Simple apple button</h2>
-                    <div class="apple-pay-button apple-pay-button-black"></div>
+                    <h3 style={{ marginTop: "20px" }}>Simple apple button</h3>
+                    <div class="apple-pay-button apple-pay-button-black" onClick={() => alert('testing apple pay button')}></div>
 
-                    <h2>Button with text</h2>
-                    <div class="apple-pay-button-with-text apple-pay-button-white-with-text">
+                    <h3 style={{ marginTop: "20px" }}>Button with text</h3>
+                    <div class="apple-pay-button-with-text apple-pay-button-white-with-text" onClick={() => alert('testing apple pay button')}>
                         <span class="text">Buy with</span>
                         <span class="logo"></span>
                     </div>
