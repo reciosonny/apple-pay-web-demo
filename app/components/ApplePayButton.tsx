@@ -26,7 +26,7 @@ const ApplePayButton = () => {
             return;
         }
 
-        if (!window.braintree.client) {
+        if (!window.braintree) {
             console.error("Braintree client not loaded yet");
             return;
         }
