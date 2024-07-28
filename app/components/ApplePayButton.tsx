@@ -22,7 +22,7 @@ const ApplePayButton = () => {
         }
 
         // Step 2: Initialize Braintree client and Apple Pay instance
-        braintree.client.create(
+        window.braintree.client.create(
             {
                 authorization: "sandbox_mf5b44gq_v3rx8zbpkdzts6jw",
             },
@@ -34,7 +34,7 @@ const ApplePayButton = () => {
 
                 console.log("Braintree Client created:", clientInstance);
 
-                braintree.applePay.create(
+                window.braintree.applePay.create(
                     {
                         client: clientInstance,
                     },
