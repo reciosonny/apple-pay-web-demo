@@ -7,11 +7,14 @@ const ApplePayButton = () => {
     const [error, setError] = useState(null);
 
     const initializeApplePay = () => {
+        console.log('attempting to initialize apple pay...');
 
         // Step 1: Check if Apple Pay button is compatible with the device and browser
         if (!window.ApplePaySession) {
             console.error("This device does not support Apple Pay");
             setError("This device does not support Apple Pay");
+
+            return;
         }
 
         if (!window.ApplePaySession.canMakePayments()) {
@@ -19,6 +22,13 @@ const ApplePayButton = () => {
                 "This device is not capable of making Apple Pay payments"
             );
             setError("Apple Pay is supported but not set up on this device");
+
+            return;
+        }
+
+        if (!window.braintree.client) {
+            console.error("Braintree client not loaded yet");
+            return;
         }
 
         // Step 2: Initialize Braintree client and Apple Pay instance
@@ -55,12 +65,11 @@ const ApplePayButton = () => {
                 );
             }
         );
-
     };
 
     useEffect(() => {
         initializeApplePay();
-    }, []);
+    }, [window.braintree]);
 
     const handleApplePayButtonClick = () => {
         console.log("Apple Pay button clicked");
