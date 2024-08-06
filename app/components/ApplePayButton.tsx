@@ -76,7 +76,7 @@ const ApplePayButton = () => {
         }
         
         initializeApplePay();
-    }, [window]);
+    }, []);
 
     const handleApplePayButtonClick = () => {
         console.log("Apple Pay button clicked");
