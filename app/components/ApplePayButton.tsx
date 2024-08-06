@@ -135,6 +135,10 @@ const ApplePayButton = () => {
         session.begin();
     };
 
+    if (!applePayInitialized) {
+        return <p>Initializing Apple Pay...</p>;
+    }
+
     return (
         <div style={{ marginTop: "40px" }}>
             <h2>Apple Pay Button goes here</h2>
