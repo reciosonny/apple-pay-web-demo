@@ -1,6 +1,5 @@
 import Image from "next/image";
-import ApplePayButton from "./components/ApplePayButton";
-import BraintreeDropIn from "./components/BraintreeDropIn";
+import ClientSideRenderPlaceholder from "./components/ClientSideRenderPlaceholder";
 
 export default function Home() {
     return (
@@ -31,8 +30,7 @@ export default function Home() {
             </div>
 
             <div>
-                <BraintreeDropIn />
-                <ApplePayButton />
+                <ClientSideRenderPlaceholder />
             </div>
 
         </main>
