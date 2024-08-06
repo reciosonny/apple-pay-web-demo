@@ -7,7 +7,7 @@ const ApplePayButton = () => {
     const [error, setError] = useState(null);
 
     const initializeApplePay = () => {
-        console.log('attempting to initialize apple pay...');
+        console.log("attempting to initialize apple pay...");
 
         // Step 1: Check if Apple Pay button is compatible with the device and browser
         if (!window.ApplePaySession) {
@@ -57,7 +57,10 @@ const ApplePayButton = () => {
                             return;
                         }
 
-                        console.log("Apple Pay instance created:", applePayInstance);
+                        console.log(
+                            "Apple Pay instance created:",
+                            applePayInstance
+                        );
 
                         // Set up your Apple Pay button here (such as showing it in the UI)
                         console.log("TODO: Set up Apple Pay button");
@@ -68,8 +71,13 @@ const ApplePayButton = () => {
     };
 
     useEffect(() => {
+        if (!window) {
+            console.log('window object not yet initialized');
+            return;
+        }
+        
         initializeApplePay();
-    }, [window.braintree]);
+    }, [window]);
 
     const handleApplePayButtonClick = () => {
         console.log("Apple Pay button clicked");
@@ -91,6 +99,22 @@ const ApplePayButton = () => {
 
         session.onvalidatemerchant = (event) => {
             console.log("Merchant validation would happen here");
+
+            // performs validation
+            applePayInstance.performValidation(
+                {
+                    validationURL: event.validationURL,
+                    displayName: "My Store",
+                },
+                function (err, merchantSession) {
+                    if (err) {
+                        // You should show an error to the user, e.g. 'Apple Pay failed to load.'
+                        return;
+                    }
+                    session.completeMerchantValidation(merchantSession);
+                }
+            );
+
             // In a real scenario, you'd validate with your server
             session.completeMerchantValidation({});
         };
