@@ -1,5 +1,5 @@
-// @ts-nocheck
 "use client";
+// @ts-nocheck
 import React, { useEffect, useState } from "react";
 
 const ApplePayButton = () => {
@@ -146,17 +146,17 @@ const ApplePayButton = () => {
 
                     <h3 style={{ marginTop: "20px" }}>Simple apple button</h3>
                     <div
-                        class="apple-pay-button apple-pay-button-black"
+                        className="apple-pay-button apple-pay-button-black"
                         onClick={() => alert("testing apple pay button")}
                     ></div>
 
                     <h3 style={{ marginTop: "20px" }}>Button with text</h3>
                     <div
-                        class="apple-pay-button-with-text apple-pay-button-white-with-text"
+                        className="apple-pay-button-with-text apple-pay-button-white-with-text"
                         onClick={() => alert("testing apple pay button")}
                     >
-                        <span class="text">Custom buy with</span>
-                        <span class="logo"></span>
+                        <span className="text">Custom buy with</span>
+                        <span className="logo"></span>
                     </div>
                 </div>
             ) : (
