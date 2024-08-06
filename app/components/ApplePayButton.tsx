@@ -74,8 +74,11 @@ const ApplePayButton = () => {
             console.log('window object not yet initialized');
             return;
         }
+
+        setTimeout(() => {
+            initializeApplePay();            
+        }, 5000);
         
-        initializeApplePay();
     }, []);
 
     const handleApplePayButtonClick = () => {
