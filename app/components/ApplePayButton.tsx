@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 const ApplePayButton = () => {
     const [canMakePayments, setCanMakePayments] = useState(false);
+    const [applePayInitialized, setApplePayInitialized] = useState(false);
     const [error, setError] = useState(null);
 
     const initializeApplePay = () => {
@@ -61,12 +62,16 @@ const ApplePayButton = () => {
                             applePayInstance
                         );
 
+                        setCanMakePayments(true);
+
                         // Set up your Apple Pay button here (such as showing it in the UI)
                         console.log("TODO: Set up Apple Pay button");
                     }
                 );
             }
         );
+
+        setApplePayInitialized(true);
     };
 
     useEffect(() => {
@@ -75,8 +80,8 @@ const ApplePayButton = () => {
             return;
         }
 
-        setTimeout(() => {
-            initializeApplePay();            
+        setTimeout(() => { //have to wait for braintree to load in this method as Next/Vercel doesn't support window object inside useEffect
+            initializeApplePay();          
         }, 5000);
         
     }, []);
