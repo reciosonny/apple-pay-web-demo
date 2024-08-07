@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 const ApplePayButton = () => {
     const [canMakePayments, setCanMakePayments] = useState(false);
     const [applePayInitialized, setApplePayInitialized] = useState(false);
+    const [applePayInstance, setApplePayInstance] = useState(null);
     const [error, setError] = useState(null);
 
     const initializeApplePay = () => {
@@ -41,7 +42,10 @@ const ApplePayButton = () => {
                         },
                         function (applePayErr, applePayInstance) {
                             if (applePayErr) {
-                                throw "Error creating Apple Pay instance: " + applePayErr;
+                                throw (
+                                    "Error creating Apple Pay instance: " +
+                                    applePayErr
+                                );
                             }
 
                             console.log(
@@ -49,10 +53,8 @@ const ApplePayButton = () => {
                                 applePayInstance
                             );
 
+                            setApplePayInstance(applePayInstance);
                             setCanMakePayments(true);
-
-                            // Set up your Apple Pay button here (such as showing it in the UI)
-                            console.log("TODO: Set up Apple Pay button");
                         }
                     );
                 }
@@ -79,16 +81,24 @@ const ApplePayButton = () => {
 
     const handleApplePayButtonClick = () => {
         console.log("Apple Pay button clicked");
-        const paymentRequest = {
-            countryCode: "US",
-            currencyCode: "USD",
-            supportedNetworks: ["visa", "masterCard", "amex"],
-            merchantCapabilities: ["supports3DS"],
+
+        var paymentRequest = applePayInstance.createPaymentRequest({
             total: {
-                label: "Your Total",
-                amount: "10.00",
+                label: "My Store",
+                amount: "19.99",
             },
-        };
+
+            // We recommend collecting billing address information, at minimum
+            // billing postal code, and passing that billing postal code with
+            // all Apple Pay transactions as a best practice.
+            requiredBillingContactFields: ["postalAddress"],
+        });
+        console.log(paymentRequest.countryCode);
+        console.log(paymentRequest.currencyCode);
+        console.log(paymentRequest.merchantCapabilities);
+        console.log(paymentRequest.supportedNetworks);
+
+        var session = new ApplePaySession(3, paymentRequest);
 
         console.log("Payment request:", paymentRequest);
         console.log("Starting apple pay session");
@@ -149,7 +159,7 @@ const ApplePayButton = () => {
                     <h3 style={{ marginTop: "20px" }}>Simple apple button</h3>
                     <div
                         className="apple-pay-button apple-pay-button-black"
-                        onClick={() => alert("testing apple pay button")}
+                        onClick={handleApplePayButtonClick}
                     ></div>
 
                     <h3 style={{ marginTop: "20px" }}>Button with text</h3>
