@@ -98,8 +98,6 @@ const ApplePayButton = () => {
         console.log(paymentRequest.merchantCapabilities);
         console.log(paymentRequest.supportedNetworks);
 
-        var session = new ApplePaySession(3, paymentRequest);
-
         console.log("Payment request:", paymentRequest);
         console.log("Starting apple pay session");
 
