@@ -1,3 +1,10 @@
+// import { GooglePayment } from "braintree-web";
+
+import { GooglePayment } from "./google-payment";
+
 interface Window {
-    GooglePay: { testVar1: string; hasPayment: string };
+    GooglePay: GooglePayment;
+    braintree: {
+        googlePayment: GooglePayment;
+    }
 }
